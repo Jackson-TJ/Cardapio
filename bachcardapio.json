@@ -1,0 +1,34 @@
+{
+    "Cardapio": [
+        {
+            "PutRequest": {
+                "Item": {
+                  "Tamanho": {"S": "Pequeno"},
+                  "Proteina": {"S": "Ovo Frito"},
+                  "Acompanhamento": {"S": "Feijão Carioca"},
+                  "Bebidas": {"S": "Suco de Caju"}
+                }
+            }
+        },
+        {
+            "PutRequest": {
+                "Item": {
+                  "Tamanho": {"S": "Médio"},
+                  "Proteina": {"S": "Panquecas"},
+                  "Acompanhamento": {"S": "Salada Verde"},
+                  "Bebidas": {"S": "Suco de Manga"}
+                }
+            }
+        },
+        {
+            "PutRequest": {
+                "Item": {
+                  "Tamanho": {"S": "Grande"},
+                  "Proteina": {"S": "Frango Frito"},
+                  "Acompanhamento": {"S": "Bata Fita"},
+                  "Bebidas": {"S": "refrigerante"}
+                }
+            }
+        }
+      ]
+}
