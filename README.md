@@ -46,6 +46,30 @@
         "[{\"Create\":{\"IndexName\": \"ProteinaAcompanhamento-index\",\"KeySchema\":[{\"AttributeName\":\"Proteina\",\"KeyType\":\"HASH\"}, {\"AttributeName\":\"Acompanhamento\",\"KeyType\":\"HASH\"}], \
         \"ProvisionedThroughput\": {\"ReadCapacityUnits\": 10, \"WriteCapacityUnits\": 5      },\"Projection\":{\"ProjectionType\":\"ALL\"}}}]"
   ```
-- Criar um index global secundario bseado em Bebidas
+- Criar um index global secundario baseado em Bebidas
   
+    ```json
+    aws dynamodb update-table \
+        --table-name Cardapio \
+        --attribute-definitions\
+            AttributeName=Bebidas,AttributeType=S \
+            AttributeName=Tamanho,AttributeType=S \
+        --global-secondary-index-updates \
+            "[{\"Create\":{\"IndexName\": \"BebidasTamanho-index\",\"KeySchema\":[{\"AttributeName\":\"Bebidas\",\"KeyType\":\"HASH\"}, {\"AttributeName\":\"Tamanho\",\"KeyType\":\"HASH\"}], \
+            \"ProvisionedThroughput\": {\"ReadCapacityUnits\": 10, \"WriteCapacityUnits\": 5      },\"Projection\":{\"ProjectionType\":\"ALL\"}}}]"
+    ```
+- Pesquisa por Proteina
+  ```json
+  aws dynamodb query \
+    --table-name Cardapio \
+    --key-condition-expression "Proteina = :proteina" \
+    --expression-attribute-values  '{":proteina":{"S":"Ovo Frito"}}'
+  ```
+- Pesquisa por Proteina e Acompanhamento
+  ```python
+  aws dynamodb query \
+    --table-name Cardapio \
+    --key-condition-expression "Proteina = :proteina and Acompanhamento = :title" \
+    --expression-attribute-values file://keyconditions.json
+  ```
   
